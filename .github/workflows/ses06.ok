@@ -1,0 +1,25 @@
+{
+  "name": "Session 6",
+  "endpoint": "icbs/busi97284/fa21/ses06",
+  "src": [
+    "ses06.py"
+  ],
+  "tests": {
+    "tests/test_ses06_solution_count_characters_0.py": "ok_test",
+    "tests/test_ses06_solution_count_characters_1.py": "ok_test",
+    "tests/test_ses06_solution_count_characters_2.py": "ok_test",
+    "tests/test_ses06_solution_count_characters_3.py": "ok_test",
+    "tests/test_ses06_solution_count_words_0.py": "ok_test",
+    "tests/test_ses06_solution_count_words_1.py": "ok_test",
+    "tests/test_ses06_solution_divide_0.py": "ok_test",
+    "tests/test_ses06_solution_divide_1.py": "ok_test",
+    "tests/test_ses06_solution_print_dict_values_0.py": "ok_test",
+    "tests/test_ses06_solution_print_dict_values_1.py": "ok_test"
+  },
+  "protocols": [
+    "file_contents",
+    "grading",
+    "analytics",
+    "backup"
+  ]
+}
