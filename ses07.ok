@@ -1,0 +1,21 @@
+{
+    "name": "Session 7",
+    "endpoint": "",
+    "src": [
+        "ses07.py",
+	    "ses07_extra.py"
+    ],
+    "tests": {
+      "tests/recap.py": "ok_test",
+      "ses07.py:create_bfs_graph": "doctest",
+      "ses07.py:bfs": "doctest",
+      "ses07.py:bfs_track_path": "doctest",
+      "ses07_extra.py:dfs": "doctest"
+    },
+    "protocols": [
+        "file_contents",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}

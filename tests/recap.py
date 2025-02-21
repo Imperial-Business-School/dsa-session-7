@@ -6,10 +6,9 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> l1 = [1, 2, 4, 8, 16]
-          >>> l2 = [1, 3, 9, 27]
-          >>> len(l1)
-          96d40d013e23679fb02f8e16b1ca3ae9
+          >>> d = {'dog', 'cat', 'bird', 'cow'}
+          >>> type(d)
+          0b7118a32cccff9b9bd1870b7f9da066
           # locked
           """,
           'hidden': False,
@@ -17,10 +16,8 @@ test = {
         },
         {
           'code': r"""
-          >>> l1 = [1, 2, 4, 8, 16]
-          >>> l2 = [1, 3, 9, 27]
-          >>> len(l2)
-          09e15535b274c7b526e57d1a67d97f4c
+          >>> 'cat' in d
+          a7465ecc0421c9e0085a8a012fce1e93
           # locked
           """,
           'hidden': False,
@@ -28,23 +25,9 @@ test = {
         },
         {
           'code': r"""
-          >>> l1 = [1, 2, 4, 8, 16]
-          >>> l2 = [1, 3, 9, 27]
-          >>> l3_a = [l1, l2]
-          >>> len(l3_a)
-          2760d308a1982bd76abbb5a2883d31e6
-          # locked
-          """,
-          'hidden': False,
-          'locked': True
-        },
-        {
-          'code': r"""
-          >>> l1 = [1, 2, 4, 8, 16]
-          >>> l2 = [1, 3, 9, 27]
-          >>> l3_b = l1 + l2
-          >>> len(l3_b)
-          02023badfcd182e96431a63561f422e9
+          >>> d.add('mouse')
+          >>> len(d)
+          17676197347896dd77ecff7024cf78ad
           # locked
           """,
           'hidden': False,
@@ -58,11 +41,53 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> cnt = 0
-          >>> for i in range(9):
-          ...     cnt += 1
-          >>> print(cnt)
-          02023badfcd182e96431a63561f422e9
+          >>> # Write Error if there's an error
+          >>> x, y = [9,3,1], 1 
+          >>> y
+          ffa75b1b87165b2ccfd71fdee28914dc
+          # locked
+          """,
+          'hidden': False,
+          'locked': True
+        },
+        {
+          'code': r"""
+          >>> # Write Error if there's an error
+          >>> x, y = 4, 1 
+          >>> y, x = x, y 
+          >>> x
+          ffa75b1b87165b2ccfd71fdee28914dc
+          # locked
+          """,
+          'hidden': False,
+          'locked': True
+        },
+        {
+          'code': r"""
+          >>> # Write Error if there's an error
+          >>> def f(x, y):
+          ...     a, b = 3*x, 2*y
+          ...     return a, b
+          >>> x, y = f(2, 2)
+          >>> x
+          3298fb8a656a2d5ee7c6ca45f9c3d9b7
+          # locked
+          >>> y
+          ef50822dd004a6ebc5cba5a9fddf1767
+          # locked
+          """,
+          'hidden': False,
+          'locked': True
+        },
+        {
+          'code': r"""
+          >>> animals = {'eagle': 'bird', 'hawk': 'bird', 'manatee': 'mammal', 'finch': 'bird'}
+          >>> bird_count = 0
+          >>> for animal in animals:
+          ...    if animals[animal] == 'bird':
+          ...        bird_count += 1
+          >>> bird_count
+          453cf288da1dfd386b98842f7679fc94
           # locked
           """,
           'hidden': False,
