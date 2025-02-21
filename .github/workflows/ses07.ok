@@ -1,0 +1,20 @@
+{
+  "name": "Session 7",
+  "endpoint": "icbs/busi97284/fa21/ses07",
+  "src": [
+    "ses07.py"
+  ],
+  "tests": {
+    "tests/test_ses07_solution_bfs_0.py": "ok_test",
+    "tests/test_ses07_solution_bfs_track_path_0.py": "ok_test",
+    "tests/test_ses07_solution_bfs_track_path_1.py": "ok_test",
+    "tests/test_ses07_solution_create_bfs_graph_0.py": "ok_test",
+    "tests/test_ses07_solution_create_bfs_graph_1.py": "ok_test"
+  },
+  "protocols": [
+    "file_contents",
+    "grading",
+    "analytics",
+    "backup"
+  ]
+}
