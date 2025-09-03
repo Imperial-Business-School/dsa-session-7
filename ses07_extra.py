@@ -1,5 +1,5 @@
 
-from ses07_data_structures import Graph, Digraph, Queue, QueueNode
+from libs.ses07_data_structures import Graph, Digraph, Queue, QueueNode
 
 def create_dfs_graph():
     """

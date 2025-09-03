@@ -1,6 +1,6 @@
-# This command imports data structures in ses07_data_structures.py
-# It will only work if the ses07_data_structures.py file is in the same directory
-from ses07_data_structures import Graph, Digraph, Queue, QueueNode
+# This command imports some new data structures
+# It will only work if the ses07_data_structures.py file is in the libs directory
+from libs.ses07_data_structures import Graph, Digraph, Queue, QueueNode
 
 
 def create_bfs_graph():
