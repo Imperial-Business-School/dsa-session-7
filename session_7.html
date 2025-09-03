@@ -7610,7 +7610,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We will use a class, <code>Digraph</code>, similar to the one in your textbook, to combine the adjacency list representation with functionality we use with graphs.</p>
+<p>We will use a new data structure called a <code>Digraph</code>, to combine the adjacency list representation with functionality we use with graphs. The information on how to use this type is in the docstring, as seen below. If you are interested in the implementation, you may optionally visit the relevant Python module in <code>libs/</code>.</p>
 </div>
 </div>
 </div>
@@ -7623,11 +7623,15 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Digraph</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">""" </span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Directed graph.</span>
-<span class="sd">       </span>
-<span class="sd">    edges is a dictionary mapping each node to a set of its children nodes.</span>
-<span class="sd">    num_edges is the total number of edges.</span>
+
+<span class="sd">    Public methods:</span>
+<span class="sd">        add_node(node): Add a node to the graph.</span>
+<span class="sd">        add_edge(src, dest): Add a directed edge from src to dest.</span>
+<span class="sd">        children_of(v): Get the children of node v.</span>
+<span class="sd">        has_node(v): Check if node v exists in the graph.</span>
+<span class="sd">        has_edge(v, w): Check if there is an edge from v to w.</span>
 <span class="sd">    """</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -7646,7 +7650,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Undirected-graphs">Undirected graphs<a class="anchor-link" href="#Undirected-graphs">¶</a></h3><p>To implement an undirected graph, we can use much the same ideas as a directed graph. In fact, we'll simply write <code>Graph</code> as a subclass of <code>Digraph</code>, but with edges in two directions.</p>
+<h3 id="Undirected-graphs">Undirected graphs<a class="anchor-link" href="#Undirected-graphs">¶</a></h3><p>For an undirected graph, we can use much the same ideas as a directed graph. We've provided the <code>Graph</code> data structure for this, which has edges in two directions. The same methods are available on this structure. If you would like to view the implementation you may see it in <code>libs/</code>, but again, it is not required.</p>
 </div>
 </div>
 </div>
@@ -7659,8 +7663,15 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Graph</span><span class="p">(</span><span class="n">Digraph</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">""" </span>
-<span class="sd">    Undirected graph: two one-way edges for every edge</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Undirected graph: two one-way edges for every added edge.</span>
+
+<span class="sd">    Public methods:</span>
+<span class="sd">        add_node(node): Add a node to the graph.</span>
+<span class="sd">        add_edge(src, dest): Add an undirected edge between src and dest.</span>
+<span class="sd">        children_of(v): Get the children of node v.</span>
+<span class="sd">        has_node(v): Check if node v exists in the graph.</span>
+<span class="sd">        has_edge(v, w): Check if there is an edge from v to w.</span>
 <span class="sd">    """</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">dest</span><span class="p">):</span>
         <span class="n">Digraph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">dest</span><span class="p">)</span>
@@ -7677,10 +7688,8 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>This is an example of <em>inheritance</em> between Python objects. Creating a <code>Graph(Digraph)</code> tells Python that a <code>Graph</code> object has all the methods of a <code>Digraph</code> object --- only the way we add edges is different. This method is "overwritten" by the new class.
-The difference is that now we're adding a directed edge in both ways to create an undirected graph. This is an inefficient way of implementing an undirected graph, but a simple one.</p>
-<h3 id="Importing-modules">Importing modules<a class="anchor-link" href="#Importing-modules">¶</a></h3><p>In this session, the exercises are in <code>ses07.py</code>, but the graph implementation is in a separate Python file <code>ses07_data_structures.py</code>. This is useful as we don't need to edit the data structures, and putting them in our main file would make it quite long. Furthermore, if we package our code into modules, we can use the same code for solving different problems in different scripts.</p>
-<p>How do we make the data structures available to us in <code>ses07.py</code>? We can use the command</p>
+<h3 id="Aside:-Importing-modules">Aside: Importing modules<a class="anchor-link" href="#Aside:-Importing-modules">¶</a></h3><p>In this session, the exercises are in <code>ses07.py</code>, but the graph data structures which we've created for you are in a separate Python file at <code>libs/ses07_data_structures.py</code>. This is useful as you don't need to edit the data structures, or understand their precise implementation. Putting them in our main file would make it quite long and may add extra complexity. Furthermore, if we package our code into modules, we can later use the same code for solving different problems in different scripts.</p>
+<p>To make the data structures available to us in <code>ses07.py</code> we can use the following command, which you will see at the top of your Python file.</p>
 </div>
 </div>
 </div>
@@ -7692,7 +7701,7 @@ The difference is that now we're adding a directed edge in both ways to create a
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ses07_data_structures</span><span class="w"> </span><span class="kn">import</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">Digraph</span><span class="p">,</span> <span class="n">Queue</span><span class="p">,</span> <span class="n">QueueNode</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">libs.ses07_data_structures</span><span class="w"> </span><span class="kn">import</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">Digraph</span><span class="p">,</span> <span class="n">Queue</span><span class="p">,</span> <span class="n">QueueNode</span>
 </pre></div>
 </div>
 </div>
@@ -7705,8 +7714,8 @@ The difference is that now we're adding a directed edge in both ways to create a
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>This tells Python to look for a module called <code>ses07_data_structures</code> and import the definitions <code>Graph, Digraph, Queue, QueueNode</code>. These definitions could be any names we define in the module: classes, functions, or variables. Once we run this line of code, we can use them in <code>ses07.py</code>, for example with <code>g = Graph()</code>.</p>
-<p>Alternatively, we could use</p>
+<p>This tells Python to look for a module called <code>ses07_data_structures</code> in the <code>libs</code> directory and import the definitions <code>Graph, Digraph, Queue, QueueNode</code>. Once we run this line of code, we can use them in <code>ses07.py</code>, for example with <code>g = Graph()</code>, much in the same way we can create a dictionary with <code>d = dict()</code>.</p>
+<p>Alternatively, we could have used</p>
 </div>
 </div>
 </div>
@@ -7718,7 +7727,7 @@ The difference is that now we're adding a directed edge in both ways to create a
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ses07_data_structures</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ds</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">libs.ses07_data_structures</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ds</span>
 </pre></div>
 </div>
 </div>
@@ -7732,11 +7741,8 @@ The difference is that now we're adding a directed edge in both ways to create a
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>This would give us access to everything in the file, but giving it the name <code>ds</code>. Then we would access them through this name with the dot notation: <code>g = ds.Graph()</code>.</p>
-<p><strong>Before you run the import command, ensure the module to import is in the same directory as your main .py file.</strong> The import command works by default in the current directory.</p>
-<blockquote>
-<p><strong>Advanced</strong>. If we want to load a module we've saved into another directory, we'll need to do some more steps to make sure Python knows where to find our module. It involves adding our directory to Python's "system path" using the <code>sys</code> module. It's a bit technical so we won't go into detail here. If you end up in a situation where you need to do this, search for "python import from another directory".</p>
-</blockquote>
-<h3 id="Question-2:-Creating-a-graph">Question 2: Creating a graph<a class="anchor-link" href="#Question-2:-Creating-a-graph">¶</a></h3><p>Examine the classes  <code>Digraph</code> and <code>Graph</code> and their methods. Using the methods, recreate the graph we used as an example in the lecture. Complete the function <code>create_bfs_graph</code>  in <code>ses07.py</code>.</p>
+<p><strong>Before you run the import command, ensure the module to import is in the libs directory.</strong></p>
+<h3 id="Question-2:-Creating-a-graph">Question 2: Creating a graph<a class="anchor-link" href="#Question-2:-Creating-a-graph">¶</a></h3><p>Examine the docstring to see the methods of  <code>Digraph</code> and <code>Graph</code>. Using these methods, recreate the graph we used as an example in the lecture. Complete the function <code>create_bfs_graph</code>  in <code>ses07.py</code>.</p>
 <p>Test your implementation with</p>
 <pre><code>python ok -q create_bfs_graph
 </code></pre>
@@ -7759,7 +7765,7 @@ The difference is that now we're adding a directed edge in both ways to create a
 <span class="n">g</span><span class="o">.</span><span class="n">children_of</span><span class="p">(</span><span class="s1">'Helena'</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="s1">'Donald'</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">has_edge</span><span class="p">(</span><span class="s1">'Donald'</span><span class="p">,</span> <span class="s1">'Helena'</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="c1"># this will call the __str__ method</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7787,7 +7793,7 @@ The difference is that now we're adding a directed edge in both ways to create a
 </ul>
 </li>
 </ul>
-<p>The extra exercise in Session 6 asked us to implemented a queue data structure. This now proves very useful as we use a queue to store the nodes we can directly reach from already visited nodes. For your convenience, a <code>Queue</code> implementation is provided in the Python file.</p>
+<p>The extra exercise in Session 6 asked us to implemented a queue data structure. This now proves very useful as we use a queue to store the nodes we can directly reach from already visited nodes. For your convenience, a <code>Queue</code> structure is also provided.</p>
 <h3 id="Question-3">Question 3<a class="anchor-link" href="#Question-3">¶</a></h3><p>Complete the breadth-first search algorithm in the Python code file.
 The algorithm steps are exactly those in the recipe above. We start with a graph and a starting node, and keep track of a a <em>dictionary</em> of explored nodes and a <em>queue</em> of unexplored nodes that are adjacent to explored nodes.</p>
 <p>You'll need the following <code>Queue</code> methods:</p>
@@ -7797,7 +7803,7 @@ The algorithm steps are exactly those in the recipe above. We start with a graph
 <li><code>q.dequeue()</code> - pop first item of queue, return the item</li>
 <li><code>q.is_empty()</code> - check if queue is empty, return True/False</li>
 </ul>
-<p>The beauty of this is that we don't need to know the implementation details - we can just use these methods to implement the BFS algorithm. If you'd like to go through how the data structure works in detail, you can examine the code in <code>ses07_data_structures.py</code>.</p>
+<p>The beauty of this is that we don't need to know the implementation details - we can just use these methods to implement the BFS algorithm. If you'd like to go through how the data structure works in detail, you can examine the code in <code>libs/ses07_data_structures.py</code>, but this is optional.</p>
 <p>You can try these methods in the Python console with the following commands:</p>
 </div>
 </div>

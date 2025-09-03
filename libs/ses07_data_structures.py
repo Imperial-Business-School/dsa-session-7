@@ -1,10 +1,13 @@
-
 class Digraph(object):
-    """ 
-    Directed graph
-    
-    edges is a dict mapping each node to a set of its children nodes
-    num_edges is the total number of edges in the graph
+    """
+    Directed graph.
+
+    Public methods:
+        add_node(node): Add a node to the graph.
+        add_edge(src, dest): Add a directed edge from src to dest.
+        children_of(v): Get the children of node v.
+        has_node(v): Check if node v exists in the graph.
+        has_edge(v, w): Check if there is an edge from v to w.
     """
     def __init__(self):
         self.edges = {}
@@ -59,8 +62,15 @@ class Digraph(object):
 
 
 class Graph(Digraph):
-    """ 
-    Undirected graph: two one-way edges for every added edge
+    """
+    Undirected graph: two one-way edges for every added edge.
+
+    Public methods:
+        add_node(node): Add a node to the graph.
+        add_edge(src, dest): Add an undirected edge between src and dest.
+        children_of(v): Get the children of node v.
+        has_node(v): Check if node v exists in the graph.
+        has_edge(v, w): Check if there is an edge from v to w.
     """
     def add_edge(self, src, dest):
         Digraph.add_edge(self, src, dest)
@@ -81,8 +91,12 @@ class QueueNode(object):
     
 class Queue(object):
     """ 
-    Queue using linked QueueNodes
-    Supports inserting and deleting nodes via enqueue and dequeue
+    Queue using linked QueueNodes.
+    Supports inserting and deleting nodes via enqueue and dequeue.
+    Public methods:
+        enqueue(stuff): Add an item to the end of the queue.
+        dequeue(): Remove and return the item from the front of the queue.
+        is_empty(): Check if the queue is empty.
     """
     def __init__(self):
         """
